@@ -36,4 +36,13 @@ public class GreetingController {
 
         return mainGetPage(model);
     }
+
+    @PostMapping("/delete")
+    public String deleteGetPage(
+            @RequestParam(name = "id", required = true) Long id,
+            Map<String, Object> model
+    ) {
+        partRepo.deleteById(id);
+        return "redirect:/";
+    }
 }
