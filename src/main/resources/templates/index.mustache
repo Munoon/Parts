@@ -1,10 +1,46 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
+    <head>
+        <title>Getting Started: Serving Web Content</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style>
+            table {
+                border-collapse: collapse;
+                margin: 10px;
+            }
+
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
     <body>
-        Hello, {{name}}.
+        <table >
+            <thead>
+                <tr>
+                    <td>Имя</td>
+                    <td>Необходимось</td>
+                    <td>Количество</td>
+                </tr>
+            </thead>
+            <tbody>
+                {{#parts}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{isNeedTranslated}}</td>
+                    <td>{{count}}</td>
+                </tr>
+                {{/parts}}
+            </tbody>
+        </table>
+
+        <div>
+            <form method="post">
+                <input type="text" name="name" placeholder="Имя"><br>
+                Необходимость <input type="checkbox" name="need"><br>
+                <input type="number" name="count"><br>
+                <input type="submit" value="Добавить">
+            </form>
+        </div>
     </body>
 </html>
