@@ -20,3 +20,6 @@ INSERT INTO `parts` (`name`, `need`, `count`) VALUES ('Корпус', true, 10);
 INSERT INTO `parts` (`name`, `need`, `count`) VALUES ('Память', true, 10);
 INSERT INTO `parts` (`name`, `need`, `count`) VALUES ('SSD диск', true, 15);
 INSERT INTO `parts` (`name`, `need`, `count`) VALUES ('Видеокарта', false, 7);
+INSERT INTO `parts` (`name`, `need`, `count`) VALUES ('Деталь 10', false, 7);
+INSERT INTO `parts` (`name`, `need`, `count`) VALUES ('Деталь 11', false, 7);
+INSERT INTO `parts` (`name`, `need`, `count`) VALUES ('Деталь 12', false, 7);
