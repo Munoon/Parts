@@ -2,6 +2,7 @@ package com.train4game.munoon;
 
 import com.train4game.munoon.domain.Part;
 import com.train4game.munoon.repos.PartRepo;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,9 +28,9 @@ public class GreetingController {
         Iterable<Part> parts;
 
         if (sort != null && !sort.isEmpty()) {
-            parts = partRepo.findAll(Sort.by(sort).descending());
+            parts = partRepo.findAll(PageRequest.of(page - 1, 10, Sort.by(sort).descending()));
         } else {
-            parts = partRepo.findAll();
+            parts = partRepo.findAll(PageRequest.of(page - 1, 10));
         }
 
         model = MainPageHelper.mainPage(model, parts, parts, page);
@@ -86,7 +87,7 @@ public class GreetingController {
     @PostMapping("/edit")
     public String editPostPage(
             @RequestParam(name = "id", required = true) Long id,
-            @RequestParam(name = "name", required = true, defaultValue = "New PAert") String name,
+            @RequestParam(name = "name", required = true, defaultValue = "New Part") String name,
             @RequestParam(required = false) boolean need,
             @RequestParam(name = "count") int count,
             Map<String, Object> model

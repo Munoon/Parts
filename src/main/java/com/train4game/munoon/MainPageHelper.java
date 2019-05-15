@@ -20,6 +20,9 @@ public class MainPageHelper {
 
         model.put("parts", parts);
         model.put("page", page);
+        if (!(page - 1 <= 0))
+            model.put("prevPage", page - 1);
+        model.put("nextPage", page + 1);
         return model;
     }
 }

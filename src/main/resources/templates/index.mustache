@@ -53,6 +53,18 @@
             </tbody>
         </table>
 
+        {{#prevPage}}
+        <form method="get">
+            <input type="hidden" name="page" value="{{prevPage}}">
+            <input type="submit" value="Предидущяя страница">
+        </form>
+        {{/prevPage}}
+
+        <form method="get">
+            <input type="hidden" name="page" value="{{nextPage}}">
+            <input type="submit" value="Следущяя страница">
+        </form>
+
         <h3>Можно собрать {{computers}} компьютеров</h3>
 
         <h3>Сортировать:</h3>
