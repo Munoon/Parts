@@ -16,10 +16,11 @@
     </head>
     <body>
         <form method="post">
+            <input type="hidden" name="page" value="{{page}}">
             <input type="text" name="filter" placeholder="Фильтр">
             <input type="submit" value="Найти">
         </form>
-        <table>
+        <table id="parts-table">
             <thead>
                 <tr>
                     <td>Имя</td>
@@ -32,9 +33,9 @@
             <tbody>
                 {{#parts}}
                 <tr>
-                    <td>{{name}}</td>
-                    <td>{{isNeedTranslated}}</td>
-                    <td>{{count}}</td>
+                    <td data-type="string">{{name}}</td>
+                    <td data-type="boolean">{{isNeedTranslated}}</td>
+                    <td data-type="number">{{count}}</td>
                     <td>
                         <form action="/edit" method="get">
                             <input type="hidden" name="id" value="{{id}}">
@@ -53,6 +54,21 @@
         </table>
 
         <h3>Можно собрать {{computers}} компьютеров</h3>
+
+        <h3>Сортировать:</h3>
+        <form method="get">
+            <input type="hidden" name="sort" value="name">
+            <input type="submit" value="По имени">
+        </form>
+        <form method="get">
+            <input type="hidden" name="sort" value="need">
+            <input type="submit" value="По необходимости">
+        </form>
+        <form method="get">
+            <input type="hidden" name="sort" value="count">
+            <input type="submit" value="По количеству">
+        </form>
+
         <a href="/add"><h3>Добавить</h3></a>
     </body>
 </html>

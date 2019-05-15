@@ -2,13 +2,10 @@ package com.train4game.munoon;
 
 import com.train4game.munoon.domain.Part;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MainPageHelper {
-    public static Map<String, Object> mainPage(Map<String, Object> model, Iterable<Part> parts, Iterable<Part> allParts) {
+    public static Map<String, Object> mainPage(Map<String, Object> model, Iterable<Part> parts, Iterable<Part> allParts, int page) {
         List<Integer> list = new ArrayList<>();
 
         allParts.forEach(part -> {
@@ -22,6 +19,7 @@ public class MainPageHelper {
             model.put("computers", Collections.min(list));
 
         model.put("parts", parts);
+        model.put("page", page);
         return model;
     }
 }
