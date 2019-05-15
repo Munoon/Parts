@@ -42,6 +42,10 @@ public class Part {
         return need ? "Да" : "Нет";
     }
 
+    public String checked() {
+        return need ? "checked" : "";
+    }
+
     public void setNeed(boolean need) {
         this.need = need;
     }

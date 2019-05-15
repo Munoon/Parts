@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class GreetingController {
@@ -27,7 +28,7 @@ public class GreetingController {
     @PostMapping
     public String mainPostPage(
             @RequestParam String name,
-            @RequestParam boolean need,
+            @RequestParam(required = false) boolean need,
             @RequestParam int count,
             Map<String, Object> model
     ) {
@@ -37,8 +38,35 @@ public class GreetingController {
         return mainGetPage(model);
     }
 
+    @GetMapping("/edit")
+    public String editGetPage(
+            @RequestParam(name = "id", required = true) Long id,
+            Map<String, Object> model
+    ) {
+        Part part = partRepo.findById(id).get();
+        model.put("part", part);
+        return "edit";
+    }
+
+    @PostMapping("/edit")
+    public String editPostPage(
+            @RequestParam(name = "id", required = true) Long id,
+            @RequestParam String name,
+            @RequestParam(required = false) boolean need,
+            @RequestParam int count,
+            Map<String, Object> model
+    ) {
+        Part part = partRepo.findById(id).get();
+        part.setName(name);
+        part.setNeed(need);
+        part.setCount(count);
+        partRepo.save(part);
+        model.put("part", part);
+        return "edit";
+    }
+
     @PostMapping("/delete")
-    public String deleteGetPage(
+    public String deletePostPage(
             @RequestParam(name = "id", required = true) Long id,
             Map<String, Object> model
     ) {
