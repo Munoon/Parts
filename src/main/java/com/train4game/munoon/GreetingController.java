@@ -36,8 +36,13 @@ public class GreetingController {
         return "index";
     }
 
-    @PostMapping
-    public String mainPostPage(
+    @GetMapping("/add")
+    public String addGetPage() {
+        return "add";
+    }
+
+    @PostMapping("/add")
+    public String addPostPage(
             @RequestParam String name,
             @RequestParam(required = false) boolean need,
             @RequestParam int count,
@@ -46,7 +51,7 @@ public class GreetingController {
         Part part = new Part(name, need, count);
         partRepo.save(part);
 
-        return mainGetPage(model);
+        return "add";
     }
 
     @GetMapping("/edit")
