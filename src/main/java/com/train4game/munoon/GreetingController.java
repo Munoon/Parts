@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class GreetingController {
@@ -21,6 +20,18 @@ public class GreetingController {
             Map<String, Object> model
     ) {
         Iterable<Part> parts = partRepo.findAll();
+        List<Integer> list = new ArrayList<>();
+
+        parts.forEach(part -> {
+            if (part.isNeed())
+                list.add(part.getCount());
+        });
+
+        if (list.size() == 0)
+            model.put("computers", 0);
+        else
+            model.put("computers", Collections.min(list));
+
         model.put("parts", parts);
         return "index";
     }
